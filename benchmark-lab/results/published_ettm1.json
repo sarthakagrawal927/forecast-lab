@@ -1,0 +1,10 @@
+{
+  "_note": "ETTm1 multivariate test MSE as printed in the papers, transcribed from the arXiv PDFs on 2026-10-04. Same sources as published_etth1.json.",
+  "mse": {
+    "Repeat (naive)": {"96": 1.214, "192": 1.261, "720": 1.319, "source": "dlinear_table2"},
+    "DLinear":        {"96": 0.299, "192": 0.335, "336": 0.369, "720": 0.425, "source": "dlinear_table2"},
+    "NLinear":        {"96": 0.306, "192": 0.349, "336": 0.375, "720": 0.433, "source": "dlinear_table2"},
+    "PatchTST/42":    {"96": 0.290, "192": 0.332, "336": 0.366, "720": 0.420, "source": "patchtst_table3"},
+    "PatchTST/64":    {"96": 0.293, "192": 0.333, "336": 0.369, "720": 0.416, "source": "patchtst_table3"}
+  }
+}
