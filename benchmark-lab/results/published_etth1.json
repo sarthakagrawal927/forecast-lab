@@ -1,0 +1,17 @@
+{
+  "_note": "ETTh1 multivariate test MSE/MAE as printed in the papers, transcribed from the arXiv PDFs on 2026-10-04. Standardised data, same splits as bench/data.py.",
+  "sources": {
+    "dlinear_table2": "Zeng et al. 2022, Are Transformers Effective for Time Series Forecasting?, arXiv:2205.13504, Table 2 (lookback 336 for linear models)",
+    "patchtst_table3": "Nie et al. 2023, A Time Series is Worth 64 Words, arXiv:2211.14730, Table 3 (PatchTST/42 uses lookback 336, PatchTST/64 uses 512)"
+  },
+  "mse": {
+    "Repeat (naive)":   {"96": 1.295, "192": 1.325, "336": 1.323, "720": 1.339, "source": "dlinear_table2"},
+    "Informer":         {"96": 0.865, "192": 1.008, "336": 1.107, "720": 1.181, "source": "dlinear_table2"},
+    "Autoformer":       {"96": 0.449, "192": 0.500, "336": 0.521, "720": 0.514, "source": "dlinear_table2"},
+    "FEDformer":        {"96": 0.376, "192": 0.420, "336": 0.459, "720": 0.506, "source": "dlinear_table2"},
+    "DLinear":          {"96": 0.375, "192": 0.405, "336": 0.439, "720": 0.472, "source": "dlinear_table2"},
+    "NLinear":          {"96": 0.374, "192": 0.408, "336": 0.429, "720": 0.440, "source": "dlinear_table2"},
+    "PatchTST/42":      {"96": 0.375, "192": 0.414, "336": 0.431, "720": 0.449, "source": "patchtst_table3"},
+    "PatchTST/64":      {"96": 0.370, "192": 0.413, "336": 0.422, "720": 0.447, "source": "patchtst_table3"}
+  }
+}
