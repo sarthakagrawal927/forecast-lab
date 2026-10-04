@@ -38,6 +38,7 @@ ranking metrics ≠ a Rust service):
 | **[demand-forecast/](demand-forecast/)** | the culmination — a forecasting **explainer**: methods × dataset regimes (taxi · Olist · bike · Rossmann · M5) × eval gates. Quantile odds, newsvendor inventory, clustering, a query surface, and `report.html`. **Start at [docs/EXPLAINER.md](demand-forecast/docs/EXPLAINER.md).** | Python |
 | **[recsys-lab/](recsys-lab/)** | the recommender benchmark ladder — popularity → item-KNN → ALS → BPR → Markov → SASRec on MovieLens-1M, honest full-ranking eval. | Python |
 | **[event-forecast/](event-forecast/)** | where it started — a next-event forecaster whose model collapsed on real data, which seeded the eval-first thesis. | Rust |
+| **[benchmark-lab/](benchmark-lab/)** | the challenge's benchmark datasets (ETT, Weather, Electricity) run through baselines → DLinear → two Transformers → hybrids under the published protocol; ETTh1 done. | Python |
 | **[co2-transformer/](co2-transformer/)** | the Applied Computing AI-Challenge — a from-scratch PyTorch Transformer forecasting CO₂ in a carbon-capture absorber, with root-cause analysis, a Postgres + FastAPI + Docker deployment and a [study guide](co2-transformer/docs/learning/README.md). **Active since 2026-10-04.** | Python |
 
 ## The one-sentence synthesis
