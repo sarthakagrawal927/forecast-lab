@@ -1,0 +1,39 @@
+# One command: docker compose up --build
+#   db      PostgreSQL 16 with the sensor-log schema
+#   loader  downloads the 8 pilot-plant runs, preprocesses, loads them, exits
+#   api     FastAPI model server on http://localhost:8000 (docs at /docs)
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: co2
+      POSTGRES_PASSWORD: co2
+      POSTGRES_DB: co2
+    ports: ["${POSTGRES_PORT:-5432}:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U co2 -d co2"]
+      interval: 3s
+      retries: 20
+
+  loader:
+    build: .
+    command: ["python", "-m", "deploy.load_db"]
+    environment:
+      DATABASE_URL: postgresql://co2:co2@db:5432/co2
+    volumes: [./data:/app/data]   # reuses already-downloaded files; fetches missing ones
+    depends_on:
+      db: { condition: service_healthy }
+    restart: "no"
+
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://co2:co2@db:5432/co2
+    ports: ["${API_PORT:-8000}:8000"]
+    depends_on:
+      loader: { condition: service_completed_successfully }
+    restart: unless-stopped
+
+volumes:
+  pgdata:
