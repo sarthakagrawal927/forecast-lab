@@ -62,3 +62,19 @@ jobs:
 
       - name: Test
         run: uv run --frozen pytest -q
+
+  benchmark-lab:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: benchmark-lab
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v3
+
+      - name: Sync deps
+        run: uv sync --frozen --python 3.12
+
+      - name: Test
+        run: uv run --frozen pytest -q
