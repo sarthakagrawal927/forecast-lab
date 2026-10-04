@@ -1,13 +1,10 @@
 # forecast-lab — PROJECT STATUS
 
-> **DELAYED 2026-07-04 — parked, not archived.**
->
-> The eval-first ML learning lab is paused. The harness and lessons remain the
-> asset; no active forecasting or recsys work is in flight. Reopen trigger: a
-> concrete product or hiring need that benefits from honest held-out eval
-> benchmarks, or a return to systematic ML study.
+> **REACTIVATED 2026-10-04** (was parked 2026-07-04) for a concrete hiring
+> need: the Applied Computing AI-Challenge, solved in `co2-transformer/`. The
+> other labs stay as they were; only the new subfolder is in active work.
 
-Last updated: 2026-09-07 (bounded reproducibility and task reconciliation)
+Last updated: 2026-10-04 (co2-transformer: AI-Challenge solution + study guide)
 
 ## Why / What
 
@@ -33,13 +30,14 @@ real asset.
 - A production forecasting product, deployment, auth, or paying users.
 - Shipping any model that doesn't beat its naive/popularity baseline.
 
-Three sub-projects share the philosophy, not the code:
+Four sub-projects share the philosophy, not the code:
 
 | Folder | What | Language |
 |---|---|---|
 | `demand-forecast/` | forecasting explainer: methods × dataset regimes (taxi · Olist · bike · Rossmann · M5) × eval gates | Python |
 | `recsys-lab/` | recommender benchmark ladder: popularity → item-KNN → ALS → BPR → Markov → SASRec on MovieLens-1M | Python |
 | `event-forecast/` | where it started — next-event forecaster whose model collapsed on real data (has its own `PROJECT_STATUS.md`) | Rust |
+| `co2-transformer/` | AI-Challenge: from-scratch PyTorch Transformer forecasting CO₂ in a carbon-capture absorber, analysis notebook with root-cause analysis, Postgres + FastAPI + Docker Compose deployment, study guide | Python |
 
 ## Dependencies
 
@@ -69,6 +67,13 @@ Three sub-projects share the philosophy, not the code:
 - **2026-06-24** — event-forecast perf pass (hashset/hashmap) (#1).
 - **2026-06-28** — added fleet learning track (`docs/learning/new-things.md`).
 - **2026-07-02** — explicit deploy guard (no production deploy path).
+- **2026-10-04** — reactivated; added `co2-transformer/` (AI-Challenge). Nested
+  leave-one-run-out CV selected a log-scale target and a 3-step lookback; root-cause
+  analysis found cold start (points not yet read in a run) dominated early error, leading
+  to a CV-validated router (Transformer + linear cold-start soft sensor). Test RMSE at
+  points 5–6: 0.295 routed / 0.312 Transformer alone vs 0.829 persistence. Honest limit:
+  on points already read, persistence stays marginally better in CV. Study path in
+  `co2-transformer/docs/learning/`.
 
 ## Products
 
@@ -83,6 +88,8 @@ Three sub-projects share the philosophy, not the code:
     `results.md` leaderboard.
   - `event-forecast` — Rocket API on :8088 + Leaflet explorer + `evaluate` /
     `load_events` CLI binaries (see its `PROJECT_STATUS.md`).
+  - `co2-transformer` — `docker compose up` → Postgres + loader + FastAPI on :8000
+    (local only; no hosted deployment). See its `README.md`.
 - **Docs as product:** `TUTORIAL.md` (run-it-in-order learning path),
   `demand-forecast/docs/EXPLAINER.md`, per-lab `docs/lessons.md`.
 

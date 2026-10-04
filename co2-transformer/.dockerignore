@@ -1,0 +1,8 @@
+.venv
+data
+results
+notebooks
+docs
+tests
+**/__pycache__
+*.ipynb

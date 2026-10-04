@@ -20,7 +20,7 @@ It writes metrics/provenance and per-hour predictions under the ignored
 `demand-forecast/data/bike-evaluation/` directory. See
 [the protocol and measured receipt](demand-forecast/docs/bike-reproducibility.md).
 
-The project remains a paused learning lab. This experiment does not establish
+Apart from `co2-transformer/`, the project remains a paused learning lab. This experiment does not establish
 commerce-demand accuracy, multi-step forecast performance, or B2B readiness.
 The broader [TUTORIAL.md](TUTORIAL.md) describes historical experiments;
 its other datasets and numeric claims have not been requalified by this check.
@@ -38,6 +38,7 @@ ranking metrics ≠ a Rust service):
 | **[demand-forecast/](demand-forecast/)** | the culmination — a forecasting **explainer**: methods × dataset regimes (taxi · Olist · bike · Rossmann · M5) × eval gates. Quantile odds, newsvendor inventory, clustering, a query surface, and `report.html`. **Start at [docs/EXPLAINER.md](demand-forecast/docs/EXPLAINER.md).** | Python |
 | **[recsys-lab/](recsys-lab/)** | the recommender benchmark ladder — popularity → item-KNN → ALS → BPR → Markov → SASRec on MovieLens-1M, honest full-ranking eval. | Python |
 | **[event-forecast/](event-forecast/)** | where it started — a next-event forecaster whose model collapsed on real data, which seeded the eval-first thesis. | Rust |
+| **[co2-transformer/](co2-transformer/)** | the Applied Computing AI-Challenge — a from-scratch PyTorch Transformer forecasting CO₂ in a carbon-capture absorber, with root-cause analysis, a Postgres + FastAPI + Docker deployment and a [study guide](co2-transformer/docs/learning/README.md). **Active since 2026-10-04.** | Python |
 
 ## The one-sentence synthesis
 
