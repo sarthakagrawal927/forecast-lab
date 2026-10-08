@@ -1,0 +1,173 @@
+{
+ "dataset": "ETTm1",
+ "lookback": 336,
+ "seeds": [
+  1
+ ],
+ "linear_cfg": {
+  "lr": 0.005,
+  "batch": 32,
+  "max_epochs": 20,
+  "patience": 3,
+  "halve_lr": true
+ },
+ "transformer_cfg": {
+  "lr": 0.0001,
+  "batch": 128,
+  "max_epochs": 60,
+  "patience": 8
+ },
+ "patch_cfg": {
+  "d_model": 128,
+  "n_heads": 16,
+  "n_layers": 3,
+  "d_ff": 256,
+  "dropout": 0.2
+ },
+ "models": [
+  "naive",
+  "seasonal_naive",
+  "dlinear",
+  "patch_transformer",
+  "hybrid",
+  "blend"
+ ],
+ "horizons": {
+  "720": {
+   "n_test_windows": 10801,
+   "n_val_windows": 10801,
+   "models": {
+    "naive": [
+     {
+      "test": {
+       "mse": 1.3223118782043457,
+       "mae": 0.7294675707817078
+      },
+      "val": {
+       "mse": 1.8320815563201904,
+       "mae": 0.9311063289642334
+      }
+     }
+    ],
+    "seasonal_naive": [
+     {
+      "test": {
+       "mse": 0.573934018611908,
+       "mae": 0.46449992060661316
+      },
+      "val": {
+       "mse": 1.1055999994277954,
+       "mae": 0.6803128719329834
+      }
+     }
+    ],
+    "dlinear": [
+     {
+      "seed": 1,
+      "test": {
+       "mse": 0.4245205819606781,
+       "mae": 0.42063507437705994
+      },
+      "val": {
+       "mse": 0.8654985427856445
+      },
+      "best_epoch": 7,
+      "seconds": 35.5
+     }
+    ],
+    "patch_transformer": [
+     {
+      "seed": 1,
+      "test": {
+       "mse": 0.41547828912734985,
+       "mae": 0.4239692986011505
+      },
+      "val": {
+       "mse": 0.941620409488678
+      },
+      "best_epoch": 2,
+      "seconds": 472.9
+     }
+    ],
+    "hybrid": [
+     {
+      "seed": 1,
+      "test": {
+       "mse": 0.4245205819606781,
+       "mae": 0.42063507437705994
+      },
+      "val": {
+       "mse": 0.8654985427856445
+      },
+      "best_epoch": 0,
+      "seconds": 448.3
+     }
+    ],
+    "blend": [
+     {
+      "seed": 1,
+      "weight_linear": 1.0,
+      "test": {
+       "mse": 0.4245205819606781,
+       "mae": 0.42063507437705994
+      },
+      "val": {
+       "mse": 0.8654985427856445,
+       "mae": 0.6152706742286682
+      }
+     }
+    ]
+   }
+  }
+ },
+ "summary": {
+  "naive": {
+   "720": {
+    "mse": 1.3223118782043457,
+    "mse_std": 0.0,
+    "mae": 0.7294675707817078,
+    "mae_std": 0.0
+   }
+  },
+  "seasonal_naive": {
+   "720": {
+    "mse": 0.573934018611908,
+    "mse_std": 0.0,
+    "mae": 0.46449992060661316,
+    "mae_std": 0.0
+   }
+  },
+  "dlinear": {
+   "720": {
+    "mse": 0.4245205819606781,
+    "mse_std": 0.0,
+    "mae": 0.42063507437705994,
+    "mae_std": 0.0
+   }
+  },
+  "patch_transformer": {
+   "720": {
+    "mse": 0.41547828912734985,
+    "mse_std": 0.0,
+    "mae": 0.4239692986011505,
+    "mae_std": 0.0
+   }
+  },
+  "hybrid": {
+   "720": {
+    "mse": 0.4245205819606781,
+    "mse_std": 0.0,
+    "mae": 0.42063507437705994,
+    "mae_std": 0.0
+   }
+  },
+  "blend": {
+   "720": {
+    "mse": 0.4245205819606781,
+    "mse_std": 0.0,
+    "mae": 0.42063507437705994,
+    "mae_std": 0.0
+   }
+  }
+ }
+}

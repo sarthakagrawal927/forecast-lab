@@ -1,0 +1,75 @@
+{
+  "sourceBaseSha": "38f5b3d8ab02532a4a1a3fb37444c11dab031a10",
+  "sourceFileSha256": {
+    "bench/run.py": "c448e027375e20e4747baed7928c21dd9708e239e0ef8f591d50a10eeaeefa0e",
+    "bench/train.py": "8b89c993856bee2fb07ea1f78c679ac8c5579b004ae5dc5c05ba516989397ebf",
+    "bench/models.py": "0ca4e07fc69fe13c681d0ddb70ae993ad09b1d4b80dfdfed7ef2350ed3dbf8af",
+    "bench/data.py": "7969d5831279198771f2fb3661640d1b32a45918ee32f5722ff66358240456c8"
+  },
+  "dataset": {
+    "file": "ETTm1.csv",
+    "sha256": "6ce1759b1a18e3328421d5d75fadcb316c449fcd7cec32820c8dafda71986c9e"
+  },
+  "qualification": {
+    "status": "exploratory",
+    "trainingSeeds": [
+      0,
+      1,
+      2
+    ],
+    "initializationControlled": false,
+    "limitation": "fit seeds training after model construction; initial model weights are uncontrolled. These are three training-seed runs, not fully seeded reproductions."
+  },
+  "method": "Strict config, horizon, seed, model and deterministic-baseline validation; one baseline record per horizon; existing summarise and markdown helpers; population standard deviation; normalize CLI model-selection order because execution uses fixed ORDER",
+  "inputs": [
+    {
+      "file": "ETTm1-full-20261008-h96-seed0.json",
+      "sha256": "c6035d5a9d1686831a01060102f12074335d0aaf88b797ab52ce662251d8ddc3"
+    },
+    {
+      "file": "ETTm1-full-20261008-h96-seed1.json",
+      "sha256": "09d4f0444c0f4838c55b24d66a406bea6f112383da39582ae1ba2d8b20829d72"
+    },
+    {
+      "file": "ETTm1-full-20261008-h96-seed2.json",
+      "sha256": "8b8667bf5fa98cf760a75fa659e0d3da59074f45d65705a5d05557e6d6e82d97"
+    },
+    {
+      "file": "ETTm1-full-20261008-h192-seed0.json",
+      "sha256": "f97bfdd8397f35d95deffe867cb81f9aebf2c41c41496e1169f4231aedf54d1d"
+    },
+    {
+      "file": "ETTm1-full-20261008-h192-seed1.json",
+      "sha256": "b7d9e74263b42d41f7895754b9e4b5d8928e35baecc8e049531df41e27c83023"
+    },
+    {
+      "file": "ETTm1-full-20261008-h192-seed2.json",
+      "sha256": "4893c80a83c7a9957bb962e11dad930d25eee7eecf8029bd13f4e96f7a29bb15"
+    },
+    {
+      "file": "ETTm1-full-20261008-h336-seed0.json",
+      "sha256": "0330a76a0e34473ee2c280c89b478a695828ce4b315fdc0d65da5275829e5d09"
+    },
+    {
+      "file": "ETTm1-full-20261008-h336-seed1.json",
+      "sha256": "35729c46e140de2fcc6030eb7d41bba8c6e635cef9ac428c3d5f66dbc954cf16"
+    },
+    {
+      "file": "ETTm1-full-20261008-h336-seed2.json",
+      "sha256": "e6521b38b0de1f688d536af29044234fc2b9cf99e21d079a8d9258b48615ad68"
+    },
+    {
+      "file": "ETTm1-full-20261008-h720-seed0.json",
+      "sha256": "2ec7b5b268fc97c3e5a7e549e3605ae6ff6ad5f33139defe9d8f3360198b3e3e"
+    },
+    {
+      "file": "ETTm1-full-20261008-h720-seed1.json",
+      "sha256": "1af6fb6512746eb311d563ddc0a9804f1e02b001426392785aabc437e0eae219"
+    },
+    {
+      "file": "ETTm1-full-20261008-h720-seed2.json",
+      "sha256": "4329a52f6b6cb14bd72992eddac88a3392bd63b5aa31dcd42f67b5f61abb4a8d"
+    }
+  ],
+  "sourceHashScope": "Reviewed current source matches the listed commit. The input artifacts do not embed per-run source/data hashes; these current file digests are not historical execution receipts."
+}
