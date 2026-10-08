@@ -75,3 +75,52 @@ forecast = w · DLinear(x) + (1 − w) · PatchTransformer(x),   w ∈ {0, 0.1, 
 the test period. The rule "only change what validation supports" works as
 intended: it refused to spend complexity, and it cost almost nothing when the
 Transformer would have helped.
+
+## Verdict on ETTm1: blending helps; the residual correction mostly does not
+
+The completed 2026-10-08 experiment contains four horizons × three training-seed
+runs. Test MSE means (lookback 336, paper-size patch model):
+
+| horizon | DLinear | Patch Transformer | residual hybrid | blend |
+|---|---|---|---|---|
+| 96 | 0.300 | 0.289 | 0.304 | 0.277 |
+| 192 | 0.336 | 0.330 | 0.336 | 0.320 |
+| 336 | 0.385 | 0.367 | 0.385 | 0.367 |
+| 720 | 0.444 | 0.417 | 0.444 | 0.430 |
+
+The [full result](../../results/ETTm1-full-20261008.md) includes MAE and run spread;
+its [manifest](../../results/ETTm1-full-20261008.provenance.json) preserves the
+twelve input hashes. Validation selected these linear blend weights, in training
+seed order 0, 1, 2:
+
+| horizon | linear weights | hybrid best epochs |
+|---|---|---|
+| 96 | 0.4, 0.5, 0.4 | 0, 0, 6 |
+| 192 | 0.5, 0.6, 0.6 | 0, 0, 0 |
+| 336 | 0.7, 0.7, 0.7 | 0, 0, 0 |
+| 720 | 0.7, 1.0, 1.0 | 0, 0, 0 |
+
+Unlike ETTh1, validation supports mixing the two models at every H=96, H=192
+and H=336 run. The blend is clearly lower on mean test MSE at the first two
+horizons; H=336 is only about 0.0004 below the patch model. At H=720 the patch
+model is best on test (0.417), but validation chooses weights 0.7, 1.0 and 1.0.
+We retain those choices. The blend's mean test MSE is 0.430; replacing it with
+the test winner would violate the selection protocol.
+
+The residual hybrid keeps its DLinear anchor in 11 of 12 fits. H=96 seed 2
+selects epoch 6: its validation MSE improves from 0.380 to 0.378, yet test MSE
+worsens from 0.300 to 0.314. The no-harm rule is a validation guarantee, not a
+test guarantee. Training the correction still costs a second Transformer fit
+even when epoch 0 wins.
+
+At H=720 DLinear varies from 0.425 to 0.472 test MSE, while the patch model
+ranges from 0.415 to 0.421. These are three-run ranges, not confidence intervals.
+The existing runner seeds training after constructing models, so initial weights
+are uncontrolled in these and the earlier ETTh1 runs. Treat the experiment as
+exploratory; seed before model construction and rerun before claiming a fully
+seeded reproduction. The original quick results remain separate.
+
+**Lesson:** combining forecasts can help without a learned residual correction.
+Keep validation's decision even when held-out test favors another model. This
+comparison changes dataset granularity and model capacity together, so it does
+not establish that sample count alone caused the improvement.

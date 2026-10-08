@@ -1,0 +1,173 @@
+{
+ "dataset": "ETTm1",
+ "lookback": 336,
+ "seeds": [
+  0
+ ],
+ "linear_cfg": {
+  "lr": 0.005,
+  "batch": 32,
+  "max_epochs": 20,
+  "patience": 3,
+  "halve_lr": true
+ },
+ "transformer_cfg": {
+  "lr": 0.0001,
+  "batch": 128,
+  "max_epochs": 60,
+  "patience": 8
+ },
+ "patch_cfg": {
+  "d_model": 128,
+  "n_heads": 16,
+  "n_layers": 3,
+  "d_ff": 256,
+  "dropout": 0.2
+ },
+ "models": [
+  "naive",
+  "seasonal_naive",
+  "dlinear",
+  "patch_transformer",
+  "blend",
+  "hybrid"
+ ],
+ "horizons": {
+  "96": {
+   "n_test_windows": 11425,
+   "n_val_windows": 11425,
+   "models": {
+    "naive": [
+     {
+      "test": {
+       "mse": 1.2138965129852295,
+       "mae": 0.6647845506668091
+      },
+      "val": {
+       "mse": 1.24965238571167,
+       "mae": 0.717932403087616
+      }
+     }
+    ],
+    "seasonal_naive": [
+     {
+      "test": {
+       "mse": 0.42269572615623474,
+       "mae": 0.38652682304382324
+      },
+      "val": {
+       "mse": 0.4984802007675171,
+       "mae": 0.4425601661205292
+      }
+     }
+    ],
+    "dlinear": [
+     {
+      "seed": 0,
+      "test": {
+       "mse": 0.2997762858867645,
+       "mae": 0.34383389353752136
+      },
+      "val": {
+       "mse": 0.38035017251968384
+      },
+      "best_epoch": 9,
+      "seconds": 23.5
+     }
+    ],
+    "patch_transformer": [
+     {
+      "seed": 0,
+      "test": {
+       "mse": 0.2845705449581146,
+       "mae": 0.33946123719215393
+      },
+      "val": {
+       "mse": 0.37376996874809265
+      },
+      "best_epoch": 5,
+      "seconds": 487.9
+     }
+    ],
+    "hybrid": [
+     {
+      "seed": 0,
+      "test": {
+       "mse": 0.2997762858867645,
+       "mae": 0.34383389353752136
+      },
+      "val": {
+       "mse": 0.38035017251968384
+      },
+      "best_epoch": 0,
+      "seconds": 313.8
+     }
+    ],
+    "blend": [
+     {
+      "seed": 0,
+      "weight_linear": 0.4,
+      "test": {
+       "mse": 0.2774185538291931,
+       "mae": 0.3326437771320343
+      },
+      "val": {
+       "mse": 0.3630453646183014,
+       "mae": 0.3995136618614197
+      }
+     }
+    ]
+   }
+  }
+ },
+ "summary": {
+  "naive": {
+   "96": {
+    "mse": 1.2138965129852295,
+    "mse_std": 0.0,
+    "mae": 0.6647845506668091,
+    "mae_std": 0.0
+   }
+  },
+  "seasonal_naive": {
+   "96": {
+    "mse": 0.42269572615623474,
+    "mse_std": 0.0,
+    "mae": 0.38652682304382324,
+    "mae_std": 0.0
+   }
+  },
+  "dlinear": {
+   "96": {
+    "mse": 0.2997762858867645,
+    "mse_std": 0.0,
+    "mae": 0.34383389353752136,
+    "mae_std": 0.0
+   }
+  },
+  "patch_transformer": {
+   "96": {
+    "mse": 0.2845705449581146,
+    "mse_std": 0.0,
+    "mae": 0.33946123719215393,
+    "mae_std": 0.0
+   }
+  },
+  "hybrid": {
+   "96": {
+    "mse": 0.2997762858867645,
+    "mse_std": 0.0,
+    "mae": 0.34383389353752136,
+    "mae_std": 0.0
+   }
+  },
+  "blend": {
+   "96": {
+    "mse": 0.2774185538291931,
+    "mse_std": 0.0,
+    "mae": 0.3326437771320343,
+    "mae_std": 0.0
+   }
+  }
+ }
+}
